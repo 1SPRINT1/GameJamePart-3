@@ -26,11 +26,16 @@ public class PlayerMovement : MonoBehaviour
     //    Flip();
         Reflect();
         Jump();
+        CheckGround();
+        CheckingLadder();
+        LadderMechanics();
+        LedderUpDown();
     }
     private void FixedUpdate() {
         moveVector.x = Input.GetAxis("Horizontal");
         _rb.velocity = new Vector2(moveVector.x * speed , _rb.velocity.y);
-        anim.SetFloat("moveX", Mathf.Abs(moveVector.x));       
+        anim.SetFloat("moveX", Mathf.Abs(moveVector.x));    
+           
 
     }
         public Vector2 moveVector;
@@ -46,11 +51,27 @@ public class PlayerMovement : MonoBehaviour
         }
 
         void Jump(){
-            if (Input.GetKeyDown(KeyCode.Space))
+
+            if(Input.GetKeyDown(KeyCode.DownArrow))
             {
-              //_rb.velocity = new Vector2(_rb.velocity.x, jumpForce);  
-              _rb.AddForce(Vector2.up * jumpForce);
+                Physics2D.IgnoreLayerCollision(7, 8, true);
+                Invoke("IgnoreLayerOff", 0.5f);
             }
+
+            if (Input.GetKeyDown(KeyCode.Space) && onGrounded)//extraJumps >= 0)
+            {
+              //_rb.velocity = new Vector2(_rb.velocity.x, jumpForce); 
+              _rb.velocity = new Vector2(_rb.velocity.x, 0); 
+              _rb.AddForce(Vector2.up * jumpForce);
+              
+              //extraJumps--;
+              
+            }
+           // if(extraJumps < 0){
+             //   extraJumps++;
+            //}
+            //if(extraJumps < 0)
+            //extraJumps++;
 
         }
 
@@ -58,5 +79,49 @@ public class PlayerMovement : MonoBehaviour
    // {
    //     _sr.flipX = moveVector.x < 0;
    // }
+
+   public bool onGrounded;
+    public Transform GroundCheck;
+    public float checkRadius = 0.5f;
+    public LayerMask Ground; 
+
+   // public int extraJumps;
+
+    void CheckGround(){
+        onGrounded = Physics2D.OverlapCircle(GroundCheck.position, checkRadius, Ground);
+        anim.SetBool("onGrounded", onGrounded);
+    }
+   
+    // private void OnDrawGizmos()
+    //{
+     //   Gizmos.color = Color.red;
+    //    Gizmos.DrawWireSphere(GroundCheck.position, checkRadius);
+   // }
+    void IgnoreLayerOff(){
+        Physics2D.IgnoreLayerCollision(7, 8, false);
+    }
+    public float Check_Radius = 0.04f;
+       private void OnDrawGizmos() {
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawSphere(Check_Ladder.position, Check_Radius);
+       }  
+    public Transform Check_Ladder;
+    public bool CheckedLadder;
+    public LayerMask LadderMask;
+    void CheckingLadder(){
+        CheckedLadder = Physics2D.OverlapPoint(Check_Ladder.position, LadderMask);
+    }
+    public float LedderSpeed = 1.5f;
+    void LadderMechanics(){
+        if (CheckedLadder){
+            _rb.bodyType = RigidbodyType2D.Kinematic;
+            _rb.velocity = new Vector2(_rb.velocity.x, moveVector.y * LedderSpeed);
+        }
+         
+        else {_rb.bodyType = RigidbodyType2D.Dynamic;}
+    }
+    void LedderUpDown(){
+        moveVector.y = Input.GetAxis("Vertical");
+    }
     
 }
