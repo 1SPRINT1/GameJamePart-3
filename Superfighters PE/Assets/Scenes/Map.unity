@@ -10385,8 +10385,8 @@ MonoBehaviour:
   Spoiler: {fileID: 2055954918}
   money: 0
   souls: 0
-  Shop: {fileID: 0}
-  ShopText: {fileID: 0}
+  Shop: {fileID: 1431562391}
+  ShopText: {fileID: 1141155511}
   isShop: 0
   _textMoney: {fileID: 51446911}
   _textSouls: {fileID: 2012527671}
