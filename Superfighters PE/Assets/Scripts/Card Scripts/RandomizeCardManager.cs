@@ -18,6 +18,7 @@ public class RandomizeCardManager : MonoBehaviour
     [SerializeField] private GameObject[] Cards;
     public int countSpawn;
     public GameManager GM;
+    public GameObject GO;
 
 
     public void AddCardPOS1()
@@ -48,5 +49,6 @@ public class RandomizeCardManager : MonoBehaviour
     {
         GM.isWinished = true;
         GM.isExitCard = true;
+        GO.SetActive(false);
     }
 }

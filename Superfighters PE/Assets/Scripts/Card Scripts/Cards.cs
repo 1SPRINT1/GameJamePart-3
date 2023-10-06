@@ -7,10 +7,12 @@ public class Cards : MonoBehaviour
     public int countCard;
     private int _empty;
     [SerializeField] private GameManager GM;
+    private bool isSpawn = false;
 
     private void Start()
     {
         GM = FindObjectOfType<GameManager>();
+        isSpawn = true;
     }
 
     private void Update()
@@ -21,5 +23,9 @@ public class Cards : MonoBehaviour
             GM._playerScore += countCard;
             _empty++;
         }
+    }
+    public void StopAnimation()
+    {
+        isSpawn = false;
     }
 }

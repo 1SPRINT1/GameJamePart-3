@@ -18,4 +18,8 @@ public class PlayerManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    private void Start()
+    {
+      CountSouls = PlayerPrefs.GetInt("CountSouls", CountSouls);
+    }
 }
