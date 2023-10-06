@@ -8,28 +8,38 @@ public class GameManager : MonoBehaviour
     [Header("Доступ к счету персонажа")]
     public int _playerScore;
     [SerializeField] private Text _textScorePlayer;
-    [Space(30)]
-    [Header("Доступ к Componen Counter")]
-    public ComponentCounter CompomenetCount;
-    public int enemyScore;
+    public bool isWinished = false;
     [Space(30)]
     [Header("Панельки")]
     [SerializeField] private GameObject WinPanel;
     [SerializeField] private GameObject LosePanel;
-
-    private void FixedUpdate()
+    [Header("Счетчик компонентов")]
+    public bool isExitCard;
+    [SerializeField] private Text _textScore;
+    public int scoreEnemy;
+    [SerializeField] [HideInInspector] private int _emptyCount;
+    private void Update()
     {
-        enemyScore = CompomenetCount.scoreEnemy;
+        _textScore.text = scoreEnemy.ToString();
         _textScorePlayer.text = _playerScore.ToString();
-        if (_playerScore > enemyScore)
+        if (isWinished == true)
         {
-            Debug.Log("По сути игрок победил вызываю панель Победы!");
-            WinPanel.SetActive(true);
+             if (_playerScore > _emptyCount && _playerScore <= 21)
+             {
+               Debug.Log("По сути игрок победил вызываю панель Победы!");
+                 WinPanel.SetActive(true);
+             }
+            else
+             {
+                Debug.Log("По логике данной игры игрок проиграет иначе, Вызываю панель проигрыша");
+                LosePanel.SetActive(true);
+             }
         }
-        else
+        if (isExitCard == true && _emptyCount != 1)
         {
-            Debug.Log("По логике данной игры игрок проиграет иначе, Вызываю панель проигрыша");
-            LosePanel.SetActive(true);
+            scoreEnemy = Random.Range(1, 22);
+            _emptyCount++;
         }
+        
     }
 }
