@@ -21,6 +21,7 @@ public class MiniBoss : MonoBehaviour
     
     void Update()
     {
+        waitTime -= Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, moveSpots[randomSpot].position, speed * Time.deltaTime);
 
         if (Vector2.Distance(transform.position, moveSpots[randomSpot].position) < 0.1f); 
