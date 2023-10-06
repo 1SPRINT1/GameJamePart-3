@@ -7,7 +7,13 @@ public class entrance2 : MonoBehaviour
     public bool dungeon2 = false;
     public entrance1 dung1;
     public GameObject miniBoss;
-    public Transform pos;
+
+    public Vector3 pos;
+
+    private void Start()
+    {
+       
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -18,7 +24,7 @@ public class entrance2 : MonoBehaviour
         if (dungeon2 == true & dung1.dungeon1 == true) 
         {
             Debug.Log("!!!");
-            Instantiate(miniBoss, pos.position, Quaternion.identity);
+            Instantiate(miniBoss, pos, Quaternion.identity);
         }
     }
 

@@ -19,7 +19,7 @@ public class CarMove : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W))
         {
-            _force += (SelfTransform.up * Time.deltaTime) * 3f;
+            _force += (SelfTransform.up * Time.deltaTime) * 0.15f;
         }
         else
         {
@@ -27,7 +27,7 @@ public class CarMove : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.S))
         {
-            _force -= (SelfTransform.up * Time.deltaTime) * 0.5f;
+            _force -= (SelfTransform.up * Time.deltaTime) * 0.1f;
         }
         else
         {
