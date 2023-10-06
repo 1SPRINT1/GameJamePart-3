@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class entrance2 : MonoBehaviour
 {
@@ -9,15 +10,9 @@ public class entrance2 : MonoBehaviour
     public GameObject miniBoss;
 
     public Vector3 pos;
-
-    private void Start()
-    {
-       
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //SceneManager.LoadScene("")
+        SceneManager.LoadScene(1);
         dungeon2 = true;
         Debug.Log("2");
 
@@ -27,6 +22,4 @@ public class entrance2 : MonoBehaviour
             Instantiate(miniBoss, pos, Quaternion.identity);
         }
     }
-
-
 }
