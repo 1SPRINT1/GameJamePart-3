@@ -19,7 +19,7 @@ public class entrance2 : MonoBehaviour
         if (dungeon2 == true & dung1.dungeon1 == true) 
         {
             Debug.Log("!!!");
-            Instantiate(miniBoss, pos, Quaternion.identity);
+            
         }
     }
 }
