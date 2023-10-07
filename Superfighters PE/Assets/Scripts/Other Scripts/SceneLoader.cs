@@ -9,10 +9,13 @@ public class SceneLoader : MonoBehaviour
     private int souls;
     private int danj1Complete;
     private int danj2Complete;
+    private int NPC3Complete;
+    private int NPC4Complete;
     private void Start()
     {
         souls = PlayerPrefs.GetInt("CountSouls", souls);
         danj1Complete = PlayerPrefs.GetInt("CompleteDanje1", danj1Complete);
+        NPC3Complete = PlayerPrefs.GetInt("NPC3", NPC3Complete);
     }
     public void SceneLoad(int sceneIndex)
     {
@@ -31,8 +34,23 @@ public class SceneLoader : MonoBehaviour
         souls++;
         danj2Complete = 1;
         PlayerPrefs.SetInt("CountSouls", souls);
-        SceneManager.LoadScene(sceneIndex);
         PlayerPrefs.SetInt("CompleteDanje2", danj2Complete);
+        SceneManager.LoadScene(sceneIndex);
     }
-
+    public void WinSceneLoadNPC3(int sceneIndex)
+    {
+        souls++;
+        NPC3Complete = 1;
+        PlayerPrefs.SetInt("CountSouls", souls);
+        PlayerPrefs.SetInt("NPC3", NPC3Complete);
+        SceneManager.LoadScene(sceneIndex);
+    }
+    public void WinSceneLoadNPC4(int sceneIndex)
+    {
+        souls++;
+        NPC4Complete = 1;
+        PlayerPrefs.SetInt("CountSouls", souls);
+        PlayerPrefs.SetInt("NPC4", NPC3Complete);
+        SceneManager.LoadScene(sceneIndex);
+    }
 }
