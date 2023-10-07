@@ -6,6 +6,12 @@ TagManager:
   tags:
   - Ground
   - Traider
+  - NPC1
+  - NPC2
+  - NPC3
+  - NPC4
+  - Entrance1
+  - Entrance2
   layers:
   - Default
   - TransparentFX

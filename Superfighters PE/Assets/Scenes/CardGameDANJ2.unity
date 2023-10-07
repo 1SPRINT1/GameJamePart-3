@@ -3509,7 +3509,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -3.2200012, y: 56.210007}
+  m_AnchoredPosition: {x: -3.2200012, y: 51}
   m_SizeDelta: {x: -453.47, y: -112.42}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2066394884
@@ -3701,7 +3701,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1665436848}
         m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
-        m_MethodName: WinSceneLoad
+        m_MethodName: WinSceneLoadDANJE2
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

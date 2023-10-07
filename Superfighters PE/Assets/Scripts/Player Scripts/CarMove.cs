@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CarMove : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class CarMove : MonoBehaviour
     [SerializeField] private int souls;
     [SerializeField] private GameObject Shop;
     [SerializeField] private GameObject ShopText;
-    [SerializeField] private bool isShop = false;
+    public bool isShop = false;
     [Space(30)]
     [Header("Текста")]
     public Text _textMoney;
@@ -27,10 +28,16 @@ public class CarMove : MonoBehaviour
     [SerializeField] private int isSpoiler;
     [SerializeField] private int isBumper;
     [SerializeField] private int isObves;
+    [Space(30)]
+    [Header("Задния от Тайлеров")]
+    public int danje1;
+    public int danje2;
     private void Start()
     {
         money = PlayerPrefs.GetInt("Money", money);
         souls = PlayerPrefs.GetInt("CountSouls", souls);
+        danje1 = PlayerPrefs.GetInt("isDanje1", danje1);
+        danje2 = PlayerPrefs.GetInt("isDanje2", danje2);
     }
     void Update()
     {
@@ -90,6 +97,41 @@ public class CarMove : MonoBehaviour
         {
             ShopText.SetActive(true);
             isShop = true;
+        }
+        if (collision.gameObject.CompareTag("NPC1"))
+        {
+            danje1 = 1;
+            PlayerPrefs.SetInt("isDanje1", danje1);
+        }
+        if (collision.gameObject.CompareTag("NPC2"))
+        {
+            danje2 = 1;
+            PlayerPrefs.SetInt("isDanje2", danje2);
+        }
+        if (collision.gameObject.CompareTag("NPC3"))
+        {
+            SceneManager.LoadScene(3);
+        }
+        if (collision.gameObject.CompareTag("NPC4"))
+        {
+            SceneManager.LoadScene(4);
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Entrance1"))
+        {
+            if (danje1 == 1)
+            {
+                SceneManager.LoadScene(1);
+            }
+        }
+        if (collision.gameObject.CompareTag("Entrance2"))
+        {
+            if (danje2 == 1)
+            {
+                SceneManager.LoadScene(2);
+            }
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
