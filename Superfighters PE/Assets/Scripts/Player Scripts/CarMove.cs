@@ -50,6 +50,8 @@ public class CarMove : MonoBehaviour
     [SerializeField] private int completeN3;
     [SerializeField] private int completeN4;
     [SerializeField] private int bossComplete;
+    [SerializeField] private GameObject WarningBOSS;
+    [SerializeField] private GameObject BossOBJ;
     private void Start()
     {
         money = PlayerPrefs.GetInt("Money", money);
@@ -95,7 +97,9 @@ public class CarMove : MonoBehaviour
         if (completeN4 == 1)
         {
             NPC4.SetActive(false);
-            EndPanel.SetActive(true);
+            // EndPanel.SetActive(true);
+            WarningBOSS.SetActive(true);
+            BossOBJ.SetActive(true);
         }
         if (bossComplete == 1)
         {
@@ -168,6 +172,10 @@ public class CarMove : MonoBehaviour
         if (collision.gameObject.CompareTag("NPC4"))
         {
             SceneManager.LoadScene(5);
+        }
+        if (collision.gameObject.CompareTag("Boss"))
+        {
+            SceneManager.LoadScene(6);
         }
     }
     private void OnTriggerStay2D(Collider2D collision)

@@ -51,10 +51,8 @@ public class SceneLoader : MonoBehaviour
     {
         souls++;
         NPC4Complete = 1;
-        bossFight = 1;
         PlayerPrefs.SetInt("CountSouls", souls);
         PlayerPrefs.SetInt("NPC4", NPC3Complete);
-        PlayerPrefs.SetInt("Boss", bossFight);
         SceneManager.LoadScene(sceneIndex);
     }
     public void BossFightEND(int sceneIndex)

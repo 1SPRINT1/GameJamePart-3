@@ -12,6 +12,7 @@ TagManager:
   - NPC4
   - Entrance1
   - Entrance2
+  - Boss
   layers:
   - Default
   - TransparentFX
