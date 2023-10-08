@@ -22,6 +22,12 @@ public class MarketSystem : MonoBehaviour
     public int isBumper;
     public int isSpoiler;
     public int isObves;
+    [SerializeField] private bool buyBumper;
+    [SerializeField] private bool buySpoiler;
+    [SerializeField] private bool buyObves;
+    [SerializeField] private GameObject isBumperObj;
+    [SerializeField] private GameObject isSpoilerObj;
+    [SerializeField] private GameObject isObvesObj;
     [SerializeField] private bool isShop = false;
 
     private void Start()
@@ -32,11 +38,11 @@ public class MarketSystem : MonoBehaviour
         isBumper = PlayerPrefs.GetInt("Bumper", isBumper);
         isObves = PlayerPrefs.GetInt("Obves", isObves);
         isSpoiler = PlayerPrefs.GetInt("Spoiler", isSpoiler);
-        isShop = CM.isShop;
     }
 
     private void Update()
     {
+        isShop = CM.isShop;
         countSoulse = PlayerPrefs.GetInt("CountSouls", countSoulse);
         moneyCount = PlayerPrefs.GetInt("Money", moneyCount);
         isBumper = PlayerPrefs.GetInt("Bumper", isBumper);
@@ -66,78 +72,55 @@ public class MarketSystem : MonoBehaviour
                 }
             }
             // Покупка Бампера
-            if (Input.GetKeyDown(KeyCode.Alpha2))
+            if (buyBumper == false)
             {
-                if (moneyCount >= 350)
+                if (Input.GetKeyDown(KeyCode.Alpha3))
                 {
-                    moneyCount -= 350;
-                    isBumper = 1;
-                    PlayerPrefs.SetInt("Money", moneyCount);
-                    PlayerPrefs.SetInt("Bumper", isBumper);
+                    if (moneyCount >= 350)
+                    {
+                        moneyCount -= 350;
+                        isBumper = 1;
+                        buyBumper = true;
+                        isBumperObj.SetActive(false);
+                        PlayerPrefs.SetInt("Money", moneyCount);
+                        PlayerPrefs.SetInt("Bumper", isBumper);
+                    }
                 }
             }
+
             // Покупка Обвеса
-            if (Input.GetKeyDown(KeyCode.Alpha3))
+            if (buyObves == false)
             {
-                if (moneyCount >= 400)
+                if (Input.GetKeyDown(KeyCode.Alpha4))
                 {
-                    isObves = 1;
-                    moneyCount -= 400;
-                    PlayerPrefs.SetInt("Money", moneyCount);
-                    PlayerPrefs.SetInt("Obves", isObves);
+                    if (moneyCount >= 400)
+                    {
+                        isObves = 1;
+                        moneyCount -= 400;
+                        buyObves = true;
+                        isObvesObj.SetActive(false);
+                        PlayerPrefs.SetInt("Money", moneyCount);
+                        PlayerPrefs.SetInt("Obves", isObves);
+                    }
                 }
             }
             // Покупка спойлера
-            if (Input.GetKeyDown(KeyCode.Alpha4))
+            if (buySpoiler == false)
             {
-                if (moneyCount >= 500)
+                if (Input.GetKeyDown(KeyCode.Alpha2))
                 {
-                    isSpoiler = 1;
-                    moneyCount -= 500;
-                    PlayerPrefs.SetInt("Money", moneyCount);
-                    PlayerPrefs.SetInt("Spoiler", isSpoiler);
+                    if (moneyCount >= 500)
+                    {
+                        isSpoiler = 1;
+                        moneyCount -= 500;
+                        buySpoiler = true;
+                        isSpoilerObj.SetActive(false);
+                        PlayerPrefs.SetInt("Money", moneyCount);
+                        PlayerPrefs.SetInt("Spoiler", isSpoiler);
+                    }
                 }
             }
         }
     }
     // Завтра переделать чтобы в апдейте искал через нажатие на кнопки 1,2,3 и т.д. ОБЯЗАТЕЛЬНО(Выполнено!)
-    public void SellSouls()
-    {
-        if (countSoulse > 0)
-        {
-            countSoulse--;
-            moneyCount += priceSoulsePurchase;
-            PlayerPrefs.SetInt("Money", moneyCount);
-        }
-    }
-    public void PurchaseBumper()
-    {
-        if (moneyCount >= 350)
-        {
-            moneyCount -= 350;
-            isBumper = 1;
-            PlayerPrefs.SetInt("Money", moneyCount);
-            PlayerPrefs.SetInt("Bumper", isBumper);
-        }
-    }
-    public void PurchaseObves()
-    {
-        if (moneyCount >= 400)
-        {
-            isObves = 1;
-            moneyCount -= 400;
-            PlayerPrefs.SetInt("Money", moneyCount);
-            PlayerPrefs.SetInt("Obves", isObves);
-        }
-    }
-    public void PurchaseSpoiler()
-    {
-        if (moneyCount >= 500)
-        {
-            isSpoiler = 1;
-            moneyCount -= 500;
-            PlayerPrefs.SetInt("Money",moneyCount);
-            PlayerPrefs.SetInt("Spoiler", isSpoiler);
-        }
-    }
 }

@@ -12,6 +12,7 @@ public class PlayerManager : MonoBehaviour
     public bool isDanje2;
     public int danje1;
     public int danje2;
+    public int isBoss;
     [Space(30)]
     [Header("Прокачка")]
     public int isSpoiler;
@@ -68,5 +69,6 @@ public class PlayerManager : MonoBehaviour
         CompleteDanje2 = PlayerPrefs.GetInt("CompleteDanje2", CompleteDanje2);
         NPC3 = PlayerPrefs.GetInt("NPC3", NPC3);
         NPC4 = PlayerPrefs.GetInt("NPC4", NPC4);
+        isBoss = PlayerPrefs.GetInt("Boss", isBoss);
     }
 }

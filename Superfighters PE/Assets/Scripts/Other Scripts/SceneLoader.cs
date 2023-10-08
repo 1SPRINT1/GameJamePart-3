@@ -11,11 +11,13 @@ public class SceneLoader : MonoBehaviour
     private int danj2Complete;
     private int NPC3Complete;
     private int NPC4Complete;
+    private int bossFight;
     private void Start()
     {
         souls = PlayerPrefs.GetInt("CountSouls", souls);
         danj1Complete = PlayerPrefs.GetInt("CompleteDanje1", danj1Complete);
         NPC3Complete = PlayerPrefs.GetInt("NPC3", NPC3Complete);
+        bossFight = PlayerPrefs.GetInt("Boss", bossFight);
     }
     public void SceneLoad(int sceneIndex)
     {
@@ -49,8 +51,20 @@ public class SceneLoader : MonoBehaviour
     {
         souls++;
         NPC4Complete = 1;
+        bossFight = 1;
         PlayerPrefs.SetInt("CountSouls", souls);
         PlayerPrefs.SetInt("NPC4", NPC3Complete);
+        PlayerPrefs.SetInt("Boss", bossFight);
+        SceneManager.LoadScene(sceneIndex);
+    }
+    public void BossFightEND(int sceneIndex)
+    {
+        souls++;
+        souls++;
+        souls++;
+        bossFight = 1;
+        PlayerPrefs.SetInt("Boss", bossFight);
+        PlayerPrefs.SetFloat("CountSouls", souls);
         SceneManager.LoadScene(sceneIndex);
     }
 }

@@ -6,9 +6,21 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 1218b5c65f1a8c342af9e02565da6656
+  - enabled: 1
     path: Assets/Scenes/Map.unity
     guid: 135925dca685f774497b1811db66fe4f
   - enabled: 1
     path: Assets/Scenes/CardGameDANJ1.unity
     guid: eb978b3c13fe38d469968d3f71450e45
+  - enabled: 1
+    path: Assets/Scenes/CardGameDANJ2.unity
+    guid: a91cf5282bb1abb4a88e3a56818d408c
+  - enabled: 1
+    path: Assets/Scenes/CardGameNPC3.unity
+    guid: 979007da30af8ae44a5a3529d28c7682
+  - enabled: 1
+    path: Assets/Scenes/CardGameNPC4.unity
+    guid: 1fa05abce5b58c541ad695c19bcdd7d6
   m_configObjects: {}
